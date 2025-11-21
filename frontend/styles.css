@@ -1,0 +1,109 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f2f6fc;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 700px;
+    margin: 2em auto;
+    background: #fff;
+    box-shadow: 0 4px 16px #0001;
+    border-radius: 12px;
+    overflow: hidden;
+}
+header, main, footer {
+    padding: 1.5em;
+}
+h1, h2 {
+    color: #1565c0;
+}
+.input-group, .checkbox-group {
+    margin-bottom: 1em;
+}
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 0.6em;
+    border: 1px solid #bdbdbd;
+    border-radius: 6px;
+    font-size: 1em;
+}
+.btn {
+    padding: 0.5em 1.2em;
+    border-radius: 6px;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    margin-right: 0.5em;
+}
+.btn-primary { background: #1565c0; color: #fff; }
+.btn-secondary { background: #455a64; color: #fff; }
+.btn-info { background: #0288d1; color: #fff; }
+.btn-danger { background: #d32f2f; color: #fff; }
+.btn-sm { font-size: 0.9em; padding: 0.3em 0.7em; }
+.products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+}
+.product-card {
+    background: #e3f2fd;
+    border-radius: 8px;
+    padding: 1em;
+    box-shadow: 0 2px 8px #0001;
+    position: relative;
+}
+.product-header { display: flex; justify-content: space-between; align-items: center; }
+.product-price { font-size: 1.1em; font-weight: bold; margin-top: 0.5em; }
+.offer-badge { 
+    background: #ffd600; 
+    color: #333; 
+    border-radius: 4px; 
+    padding: 0.2em 0.6em; 
+    margin-left: 0.5em; }
+.product-actions { margin-top: 1em; }
+.placeholder { color: #789; }
+.results-section { margin-top: 2em; }
+
+/* Modal estilos */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background: #0007;
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background: #fff;
+    padding: 2em;
+    border-radius: 10px;
+    min-width: 300px;
+}
+.modal-buttons {
+    margin-top: 1em;
+    text-align: right;
+}
+.notification {
+    position: fixed;
+    top: 1em;
+    right: 1em;
+    background: #e3f2fd;
+    color: #1565c0;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px #0003;
+    padding: 1em 2em;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.notification.show { opacity: 1; }
+.notification-success { background: #c8e6c9; color: #388e3c; }
+.notification-error { background: #ffcdd2; color: #b71c1c; }
+.notification-info { background: #bbdefb; color: #0d47a1; }
+.notification-warning { background: #ffe082; color: #ff8f00; }
+@media (max-width: 600px) {
+    .products-grid { grid-template-columns: 1fr; }
+    .container { margin: 0.5em; }
+}
