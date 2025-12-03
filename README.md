@@ -1,10 +1,9 @@
-# 🛒 AutocobroApp - Sistema de Gestión de Productos
-
-Sistema completo de gestión de productos con operaciones CRUD, desarrollado con **FastAPI** (backend) y **React + TypeScript** (frontend).
+# 🛒 Sistema de Gestión de Productos 
+Ejemplo basico de aplicacion web con operaciones CRUD, desarrollado con **FastAPI** (backend) y **React + TypeScript** (frontend).
 
 ## 📋 Descripción
 
-AutocobroApp es una aplicación web moderna que permite gestionar un catálogo de productos con las siguientes funcionalidades:
+Es una aplicación web moderna que permite gestionar un catálogo de productos con las siguientes funcionalidades:
 
 - ✅ Crear nuevos productos
 - 📖 Listar todos los productos
