@@ -1,78 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autocobro app</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>🛒 AutocobroApp - Gestor de Productos</h1>
-            <p>Interfaz para gestionar productos con FastAPI</p>
-        </header>
-
-        <main>
-            <!-- Formulario para crear/actualizar producto -->
-            <section class="form-section">
-                <h2>➕ Crear/Actualizar Producto</h2>
-                <form id="productForm">
-                    <div class="input-group">
-                        <label for="itemId">ID del Producto:</label>
-                        <input type="number" id="itemId" required min="1" placeholder="Ej: 123">
-                    </div>
-                    <div class="input-group">
-                        <label for="itemName">Nombre:</label>
-                        <input type="text" id="itemName" required placeholder="Ej: Laptop Gaming">
-                    </div>
-                    <div class="input-group">
-                        <label for="itemPrice">Precio:</label>
-                        <input type="number" id="itemPrice" required step="0.01" min="0" placeholder="Ej: 1299.99">
-                    </div>
-                    <div class="checkbox-group">
-                        <label>
-                            <input type="checkbox" id="itemOffer">
-                            ¿Está en oferta?
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">💾 Crear/Actualizar</button>
-                </form>
-            </section>
-
-            <!-- Sección para buscar producto -->
-            <section class="search-section">
-                <h2>🔍 Buscar Producto</h2>
-                <div class="search-controls">
-                    <input type="number" id="searchId" placeholder="ID del producto" min="1">
-                    <input type="text" id="searchQuery" placeholder="Query opcional (ej: gaming)">
-                    <button type="button" id="searchBtn" class="btn btn-secondary">Buscar</button>
-                    <button type="button" id="verTodosBtn" class="btn btn-info">Ver Todos</button>
-                </div>
-            </section>
-
-            <!-- Resultados -->
-            <section class="results-section">
-                <h2>📦 Productos</h2>
-                <div id="results" class="results-container">
-                    <p class="placeholder">Los productos aparecerán aquí...</p>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <!-- Modal para confirmaciones -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <h3 id="modalTitle">Confirmar</h3>
-            <p id="modalMessage">¿Estás seguro?</p>
-            <div class="modal-buttons">
-                <button id="modalConfirm" class="btn btn-danger">Sí</button>
-                <button id="modalCancel" class="btn btn-secondary">Cancelar</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>frontend-update</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

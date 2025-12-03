@@ -1,52 +1,45 @@
-# 🛒 Gestión de Productos - FastAPI Básico
+# 🛒 AutocobroApp - Sistema de Gestión de Productos
 
-> Proyecto educativo para aprender los fundamentos de **FastAPI** construyendo una API REST con operaciones CRUD.
+Sistema completo de gestión de productos con operaciones CRUD, desarrollado con **FastAPI** (backend) y **React + TypeScript** (frontend).
 
-Este proyecto demuestra cómo crear un backend moderno con FastAPI y conectarlo con un frontend básico usando HTML, CSS y JavaScript vanilla. Ideal para principiantes que quieren entender cómo funcionan las APIs REST y la comunicación cliente-servidor.
+## 📋 Descripción
 
-## 🎯 Objetivos de Aprendizaje
+AutocobroApp es una aplicación web moderna que permite gestionar un catálogo de productos con las siguientes funcionalidades:
 
-- ✅ Crear una API REST con FastAPI
-- ✅ Implementar operaciones CRUD (Create, Read, Update, Delete)
-- ✅ Configurar CORS para permitir peticiones desde el frontend
-- ✅ Validar datos con Pydantic
-- ✅ Usar variables de entorno para configuración
-- ✅ Documentación automática con Swagger UI
-- ✅ Conectar un frontend con fetch API
+- ✅ Crear nuevos productos
+- 📖 Listar todos los productos
+- 🔍 Buscar productos por nombre
+- ✏️ Actualizar productos existentes
+- 🗑️ Eliminar productos
+- 🏷️ Marcar productos en oferta
+- 💾 Persistencia de datos en PostgreSQL
 
-## 📋 Requisitos Previos
+## 🛠️ Tecnologías Utilizadas
 
-- **Python 3.8+**
-- **pip** o **uv** (gestor de paquetes Python)
-- Navegador web moderno
-- Editor de código (VS Code recomendado)
-- **Live Server** (extensión de VS Code) para el frontend
+### Backend
+- **FastAPI** - Framework web moderno y rápido
+- **PostgreSQL** - Base de datos relacional
+- **SQLAlchemy** - ORM para Python
+- **Pydantic** - Validación de datos
+- **Uvicorn** - Servidor ASGI
 
-## 🚀 Instalación y Configuración
+### Frontend
+- **React 19** - Librería de UI
+- **TypeScript** - Tipado estático
+- **Vite** - Build tool y dev server
+- **CSS3** - Estilos modernos
 
-### 1. Clonar el repositorio
+## 📁 Estructura del Proyecto
 
-```bash
-git clone https://github.com/sergiodev3/gestion-productos-fastapi-basic-ejem.git
-cd gestion-productos-fastapi-basic-ejem
 ```
-
-### 2. Configurar el entorno virtual y dependencias
-
-```bash
-# Crear entorno virtual
-python -m venv .venv
-
-# Activar entorno virtual
-# En Windows:
-.venv\Scripts\activate
-# En Linux/Mac:
-source .venv/bin/activate
-
-# Instalar dependencias
-cd backend
-pip install -r requirements.txt
-```
+gestion-productos-fastapi-basic/
+├── backend/
+│   ├── main.py                 # Punto de entrada de la aplicación
+│   ├── config.py               # Configuración global
+│   ├── requirements.txt        # Dependencias Python
+│   ├── .env.example            # Ejemplo de variables de entorno
+│   ├── Procfile                # Configuración para Railway
+│   ├── runtime.txt             # Versión de Python
 
 ### 3. Configurar variables de entorno (opcional)
 
@@ -55,236 +48,330 @@ El archivo `backend/.env` contiene la configuración del servidor:
 ```env
 HOST=127.0.0.1
 PORT=8000
-RELOAD=true
-ALLOWED_ORIGINS=http://127.0.0.1:5500,http://127.0.0.1:5501
-```
-
-Puedes modificar estos valores según tus necesidades. Para desarrollo, `ALLOWED_ORIGINS` acepta múltiples orígenes separados por comas, o usa `*` para permitir todos.
-
-## ▶️ Ejecutar la Aplicación
-
-### Backend (FastAPI)
-
-**Opción 1: Ejecutar con Python**
-```bash
-cd backend
-python main.py
-```
-
-**Opción 2: Ejecutar con Uvicorn (recomendado)**
-```bash
-cd backend
-uvicorn main:app --reload --host 127.0.0.1 --port 8000
-```
-
-El servidor estará disponible en `http://127.0.0.1:8000`
-
-### Frontend (HTML/CSS/JS)
-
-1. Abre VS Code en la carpeta del proyecto
-2. Instala la extensión **Live Server** si no la tienes
-3. Haz clic derecho en `frontend/index.html`
-4. Selecciona **"Open with Live Server"**
-
-El frontend se abrirá automáticamente en tu navegador (generalmente en `http://127.0.0.1:5500`)
-
-## 📚 Documentación de la API
-
-FastAPI genera documentación interactiva automáticamente. Una vez que el backend esté corriendo:
-
-- **Swagger UI**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-- **ReDoc**: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
-
-## 🔧 API Endpoints
-
-| Método | Endpoint | Descripción | Ejemplo |
-|--------|----------|-------------|---------|
-| `GET` | `/` | Mensaje de bienvenida | - |
-| `GET` | `/items/` | Listar todos los productos | - |
-| `GET` | `/items/{item_id}` | Obtener producto por ID | `/items/1` |
-| `PUT` | `/items/{item_id}` | Crear o actualizar producto | Body: `{"name": "Laptop", "price": 999.99, "is_offer": false}` |
-| `DELETE` | `/items/{item_id}` | Eliminar producto | `/items/1` |
-
-## 📦 Estructura del Proyecto
-
-```
-.
-├── backend/
-│   ├── main.py              # API FastAPI con endpoints CRUD
-│   ├── requirements.txt     # Dependencias Python
-│   └── .env                 # Configuración (HOST, PORT, CORS)
-├── frontend/
-│   ├── index.html          # Interfaz de usuario
-│   ├── script.js           # Lógica y fetch API
-│   └── styles.css          # Estilos CSS
-├── .gitignore
+│   ├── database/
+│   │   ├── estructura.sql      # Script SQL para crear tablas
+│   │   ├── connection.py       # Conexión a base de datos
+│   │   └── models.py           # Modelos SQLAlchemy
+│   ├── schemas/
+│   │   └── product.py          # Esquemas Pydantic
+│   ├── crud/
+│   │   └── product.py          # Operaciones CRUD
+│   └── routes/
+│       └── products.py         # Endpoints de la API
+│
+├── frontend-update/
+│   ├── src/
+│   │   ├── App.tsx             # Componente principal
+│   │   ├── config/
+│   │   │   └── api.ts          # Configuración de API
+│   │   ├── types/
+│   │   │   └── product.ts      # Tipos TypeScript
+│   │   ├── services/
+│   │   │   └── productService.ts  # Servicio de API
+│   │   └── components/
+│   │       ├── ProductForm.tsx
+│   │       ├── ProductList.tsx
+│   │       ├── ConfirmModal.tsx
+│   │       └── Notification.tsx
+│   ├── package.json
+│   ├── vite.config.ts
+│   ├── .env.example
+│   └── vercel.json             # Configuración para Vercel
+│
 └── README.md
 ```
 
-## 💡 Conceptos Clave Explicados
+## 🚀 Instalación y Configuración
 
-### 🚀 FastAPI
-Framework web moderno para Python que permite crear APIs de forma rápida y eficiente:
-- **Documentación automática** (Swagger/OpenAPI)
-- **Validación de datos** integrada con Pydantic
-- **Alto rendimiento** comparable a NodeJS y Go
-- **Type hints** para mejor autocompletado
+### Requisitos Previos
 
-### 🔒 CORS (Cross-Origin Resource Sharing)
-Mecanismo de seguridad que permite que el frontend (puerto 5500) se comunique con el backend (puerto 8000):
-```python
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://127.0.0.1:5500"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+- Python 3.11+
+- Node.js 18+
+- PostgreSQL 14+
+- npm o yarn
+
+### 1️⃣ Configurar Base de Datos
+
+1. Instala PostgreSQL y crea una base de datos:
+```sql
+CREATE DATABASE autocobro_db;
 ```
 
-### ✅ Pydantic Models
-Define y valida la estructura de los datos automáticamente:
-```python
-class Product(BaseModel):
-    name: str = Field(..., min_length=1)
-    price: float = Field(..., gt=0)
-    is_offer: bool = False
+2. Copia el contenido de `backend/database/estructura.sql` y ejecútalo en pgAdmin 4 o en tu cliente PostgreSQL preferido.
+
+### 2️⃣ Configurar Backend
+
+1. Navega a la carpeta del backend:
+```powershell
+cd backend
 ```
 
-### 🌍 Variables de Entorno
-Configuración externalizada mediante archivo `.env`:
-- **HOST**: Dirección del servidor
-- **PORT**: Puerto de escucha
-- **RELOAD**: Auto-reload en desarrollo
-- **ALLOWED_ORIGINS**: Orígenes permitidos para CORS
-
-## 🧪 Probar la API
-
-### 1. Interfaz Web (frontend)
-Usa el formulario para gestionar productos de forma visual.
-
-### 2. Swagger UI (recomendado)
-1. Ve a [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-2. Haz clic en cualquier endpoint
-3. Clic en **"Try it out"**
-4. Completa los parámetros
-5. Clic en **"Execute"**
-
-### 3. cURL (línea de comandos)
-
-```bash
-# Crear un producto
-curl -X PUT "http://127.0.0.1:8000/items/1" \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Laptop HP","price":899.99,"is_offer":false}'
-
-# Listar todos los productos
-curl http://127.0.0.1:8000/items/
-
-# Obtener un producto
-curl http://127.0.0.1:8000/items/1
-
-# Eliminar un producto
-curl -X DELETE http://127.0.0.1:8000/items/1
+2. Crea un entorno virtual:
+```powershell
+python -m venv venv
+.\.venv\Scripts\Activate.ps1
 ```
 
-### 4. JavaScript Fetch API (frontend)
-
-```javascript
-// Obtener todos los productos
-const response = await fetch('http://127.0.0.1:8000/items/');
-const data = await response.json();
-console.log(data);
+3. Instala las dependencias:
+```powershell
+pip install -r requirements.txt
 ```
 
-## 🎓 ¿Qué Aprenderás?
-
-### Backend (FastAPI)
-- ✅ Crear rutas y endpoints RESTful
-- ✅ Validar datos con Pydantic
-- ✅ Manejar errores HTTP (404, 422, etc.)
-- ✅ Configurar CORS
-- ✅ Usar variables de entorno
-- ✅ Documentar APIs automáticamente
-
-### Frontend (Vanilla JS)
-- ✅ Hacer peticiones HTTP con `fetch()`
-- ✅ Manejar respuestas JSON
-- ✅ Operaciones CRUD desde el cliente
-- ✅ Manejo de errores de red
-- ✅ Interacción con APIs REST
-
-## 📝 Notas Importantes
-
-### Base de Datos
-Este proyecto usa un **diccionario Python** como base de datos en memoria:
-- ✅ **Ventajas**: Simple, sin dependencias adicionales, ideal para aprender
-- ⚠️ **Limitación**: Los datos se pierden al reiniciar el servidor
-
-Para persistencia real, considera:
-- **SQLite** con SQLAlchemy (local, sin servidor)
-- **PostgreSQL** (producción)
-- **MongoDB** (NoSQL)
-
-### Productos de Ejemplo
-El backend incluye 3 productos de ejemplo al iniciar. Para empezar con la base vacía, comenta estas líneas en `backend/main.py`:
-
-```python
-# products_db[1] = ProductResponse(...)
-# products_db[2] = ProductResponse(...)
-# products_db[3] = ProductResponse(...)
+4. Copia el archivo de ejemplo de variables de entorno:
+```powershell
+Copy-Item .env.example .env
 ```
 
-## 🚧 Próximos Pasos
+5. Edita el archivo `.env` y configura tu conexión a PostgreSQL:
+```env
+DATABASE_URL=postgresql://postgres:tu_password@localhost:5432/gestion-productos
+ALLOWED_ORIGINS=http://localhost:5173
+HOST=0.0.0.0
+PORT=8000
+RELOAD=true
+```
 
-Si quieres seguir aprendiendo, intenta implementar:
+> ⚠️ **Nota importante**: Si tienes problemas con la codificación del archivo `.env` en Windows, usa el script `start.ps1` que configura las variables de entorno automáticamente.
 
-1. **Base de datos SQLite** con SQLAlchemy
-2. **Autenticación** con JWT tokens
-3. **Paginación** (`/items/?skip=0&limit=10`)
-4. **Filtros de búsqueda** por nombre o precio
-5. **Tests unitarios** con pytest
-6. **Validaciones adicionales** (ej: nombre único)
-7. **Logging** de peticiones
-8. **Despliegue** en Railway, Render o Vercel
+6. Inicia el servidor usando el script PowerShell:
+```powershell
+.\start.ps1
+```
+
+O alternativamente, configura las variables manualmente:
+```powershell
+$env:DATABASE_URL="postgresql://postgres:tu_password@localhost:5432/gestion-productos"
+$env:ALLOWED_ORIGINS="*"
+& ".venv\Scripts\python.exe" -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
+```
+
+El backend estará disponible en: `http://localhost:8000`
+Documentación API: `http://localhost:8000/docs`
+
+### 3️⃣ Configurar Frontend
+
+1. Navega a la carpeta del frontend:
+```powershell
+cd frontend-update
+```
+
+2. Instala las dependencias:
+```powershell
+npm install
+```
+
+3. Copia el archivo de ejemplo de variables de entorno:
+```powershell
+Copy-Item .env.example .env
+```
+
+4. Edita el archivo `.env`:
+```env
+VITE_API_BASE_URL=http://127.0.0.1:8000
+```
+
+5. Inicia el servidor de desarrollo:
+```powershell
+npm run dev
+```
+
+El frontend estará disponible en: `http://localhost:5173`
+
+## 📡 API Endpoints
+
+### Productos
+
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| GET | `/api/v1/products/` | Obtener todos los productos |
+| GET | `/api/v1/products/{id}` | Obtener un producto por ID |
+| POST | `/api/v1/products/` | Crear un nuevo producto |
+| PUT | `/api/v1/products/{id}` | Actualizar un producto |
+| DELETE | `/api/v1/products/{id}` | Eliminar un producto |
+
+### Ejemplo de Request (POST)
+
+```json
+{
+  "name": "Laptop Gaming",
+  "price": 1299.99,
+  "is_offer": true
+}
+```
+
+### Ejemplo de Response
+
+```json
+{
+  "id": 1,
+  "name": "Laptop Gaming",
+  "price": 1299.99,
+  "is_offer": true,
+  "created_at": "2024-12-03T10:00:00Z",
+  "updated_at": "2024-12-03T10:00:00Z"
+}
+```
+
+## 🚢 Deploy en Producción
+
+### Deploy del Backend en Railway
+
+1. Crea una cuenta en [Railway.app](https://railway.app)
+
+2. Crea un nuevo proyecto y agrega PostgreSQL desde el marketplace
+
+3. Conecta tu repositorio de GitHub
+
+4. Configura las variables de entorno en Railway:
+   - `DATABASE_URL` - Se configura automáticamente con PostgreSQL
+   - `ALLOWED_ORIGINS` - URL de tu frontend en Vercel (ej: `https://tu-app.vercel.app`)
+   - `HOST` - `0.0.0.0`
+   - `PORT` - Se configura automáticamente
+   - `RELOAD` - `false`
+
+5. Railway detectará automáticamente el `Procfile` y desplegará la aplicación
+
+6. Copia la URL de tu backend (ej: `https://tu-backend.up.railway.app`)
+
+7. Ejecuta el script SQL en la base de datos de Railway:
+   - Ve a la pestaña "Data" de PostgreSQL en Railway
+   - Ejecuta el contenido de `backend/database/estructura.sql`
+
+### Deploy del Frontend en Vercel
+
+1. Crea una cuenta en [Vercel](https://vercel.com)
+
+2. Importa tu repositorio de GitHub
+
+3. Configura el proyecto:
+   - **Framework Preset**: Vite
+   - **Root Directory**: `frontend-update`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+
+4. Configura las variables de entorno en Vercel:
+   - `VITE_API_BASE_URL` - URL de tu backend en Railway (ej: `https://tu-backend.up.railway.app`)
+
+5. Despliega la aplicación
+
+6. Actualiza la variable `ALLOWED_ORIGINS` en Railway con la URL de Vercel
+
+## 🔧 Scripts Útiles
+
+### Backend
+```powershell
+# Instalar dependencias
+pip install -r requirements.txt
+
+# Ejecutar servidor de desarrollo
+python main.py
+
+# Ejecutar con uvicorn
+uvicorn main:app --reload
+
+# Ejecutar tests (si existen)
+pytest
+```
+
+### Frontend
+```powershell
+# Instalar dependencias
+npm install
+
+# Ejecutar servidor de desarrollo
+npm run dev
+
+# Build para producción
+npm run build
+
+# Preview del build
+npm run preview
+
+# Linter
+npm run lint
+```
+
+## 🔐 Variables de Entorno
+
+### Backend (.env)
+```env
+DATABASE_URL=postgresql://usuario:password@host:puerto/nombre_db
+ALLOWED_ORIGINS=http://localhost:5173,https://tu-app.vercel.app
+HOST=0.0.0.0
+PORT=8000
+RELOAD=true
+```
+
+### Frontend (.env)
+```env
+VITE_API_BASE_URL=http://127.0.0.1:8000
+```
+
+## 🎯 Características Principales
+
+### Backend
+- ✅ Arquitectura modular y escalable
+- ✅ Validación de datos con Pydantic
+- ✅ ORM con SQLAlchemy
+- ✅ CORS configurado
+- ✅ Documentación automática con Swagger UI
+- ✅ Manejo de errores robusto
+- ✅ Preparado para deploy en Railway
+
+### Frontend
+- ✅ Componentes reutilizables en React
+- ✅ TypeScript para tipado seguro
+- ✅ Estado manejado con hooks
+- ✅ Notificaciones para feedback al usuario
+- ✅ Modal de confirmación para acciones destructivas
+- ✅ Diseño responsive
+- ✅ Preparado para deploy en Vercel
+
+## 📝 Buenas Prácticas Implementadas
+
+1. **Separación de Responsabilidades**: Backend y frontend completamente separados
+2. **Tipado Estático**: TypeScript en frontend, Pydantic en backend
+3. **Variables de Entorno**: Configuración flexible para desarrollo y producción
+4. **Modularidad**: Código organizado en módulos y componentes reutilizables
+5. **Validación**: Validación de datos en ambos lados
+6. **Manejo de Errores**: Try-catch y mensajes de error informativos
+7. **CORS**: Configurado correctamente para desarrollo y producción
+8. **Git**: .gitignore apropiados, archivos de ejemplo para configuración
 
 ## 🐛 Solución de Problemas
 
-### ❌ Error de CORS
-```
-Access to fetch has been blocked by CORS policy
-```
-**Solución**: Asegúrate de que el origen del Live Server (`http://127.0.0.1:5500` o `5501`) esté en `ALLOWED_ORIGINS` del archivo `.env`.
+### Error de conexión a la base de datos
+- Verifica que PostgreSQL esté corriendo
+- Verifica las credenciales en el archivo `.env`
+- Asegúrate de haber ejecutado el script SQL
 
-### ❌ Puerto en uso
-```
-Address already in use
-```
-**Solución**: Cambia el puerto en `backend/.env` o cierra la aplicación que usa el puerto 8000.
+### Error de CORS
+- Verifica que `ALLOWED_ORIGINS` en el backend incluya la URL del frontend
+- En desarrollo local, usa `*` o la URL específica del frontend
 
-### ❌ Módulo no encontrado
-```
-ModuleNotFoundError: No module named 'fastapi'
-```
-**Solución**: Activa el entorno virtual y ejecuta `pip install -r requirements.txt`.
-
-## 📖 Recursos Recomendados
-
-- [Documentación oficial de FastAPI](https://fastapi.tiangolo.com/) (EN)
-- [Tutorial de FastAPI en español](https://fastapi.tiangolo.com/es/)
-- [Pydantic Documentation](https://docs.pydantic.dev/)
-- [HTTP Status Codes](https://developer.mozilla.org/es/docs/Web/HTTP/Status)
-- [REST API Best Practices](https://restfulapi.net/)
-
-## 🤝 Contribuciones
-
-Este es un proyecto educativo. Si encuentras errores o tienes sugerencias para mejorar el aprendizaje, abre un **issue** o envía un **pull request**.
+### El frontend no se conecta al backend
+- Verifica que el backend esté corriendo
+- Verifica la variable `VITE_API_BASE_URL` en el `.env` del frontend
+- Verifica la consola del navegador para errores
 
 ## 📄 Licencia
 
-Este proyecto es de código abierto y está disponible bajo la licencia MIT.
+Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+
+## 👥 Contribuciones
+
+Las contribuciones son bienvenidas. Por favor:
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📞 Contacto
+
+Si tienes preguntas o sugerencias, no dudes en abrir un issue en GitHub.
 
 ---
 
-⭐ **Si este proyecto te ayudó a aprender FastAPI, dale una estrella en GitHub!**
-
-Desarrollado con ❤️ para enseñar los fundamentos de FastAPI
+**Desarrollado con ❤️ usando FastAPI y React**

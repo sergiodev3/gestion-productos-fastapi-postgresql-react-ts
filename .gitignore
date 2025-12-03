@@ -29,8 +29,27 @@ ENV/
 env/
 .virtualenv/
 
+# Variables de entorno (IMPORTANTE - NO SUBIR CREDENCIALES)
+.env
+.env.local
+.env.production
+.env.development
+backend/.env
+frontend-update/.env
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+dist-ssr/
+*.local
+
 # IDEs y editores
 .vscode/
+!.vscode/extensions.json
 .idea/
 *.swp
 *.swo
@@ -38,6 +57,10 @@ env/
 .project
 .pydevproject
 .settings/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
 
 # Sistema operativo
 .DS_Store
@@ -59,10 +82,6 @@ logs/
 *.sqlite3
 *.db-journal
 
-# Variables de entorno (IMPORTANTE)
-# Descomentar la línea siguiente si .env contiene información sensible
-# backend/.env
-
 # Cache de pytest
 .pytest_cache/
 .coverage
@@ -74,3 +93,9 @@ htmlcov/
 *.bak
 *.swp
 *~.nib
+
+# Build y producción
+dist/
+build/
+*.tsbuildinfo
+
