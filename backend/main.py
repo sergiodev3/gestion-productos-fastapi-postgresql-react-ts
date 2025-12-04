@@ -14,12 +14,15 @@ from config import settings
 from routes import products
 from database.connection import engine, Base
 
-# Cargar variables de entorno
-load_dotenv()
+# Cargar variables de entorno (opcional en producción)
+load_dotenv(override=False)
 
 # Crear tablas en la base de datos (solo en desarrollo)
 # En producción, usar migraciones con Alembic
-Base.metadata.create_all(bind=engine)
+try:
+    Base.metadata.create_all(bind=engine)
+except Exception as e:
+    print(f"Warning: Could not create tables: {e}")
 
 # ============================================================================
 # CONFIGURACIÓN DE LA APLICACIÓN

@@ -217,7 +217,7 @@ El frontend estará disponible en: `http://localhost:5173`
 
 1. Crea una cuenta en [Railway.app](https://railway.app)
 
-2. Crea un nuevo proyecto y agrega PostgreSQL desde el marketplace
+2. Crea un nuevo proyecto y agrega PostgreSQL
 
 3. Conecta tu repositorio de GitHub
 
