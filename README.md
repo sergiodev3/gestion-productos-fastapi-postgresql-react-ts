@@ -306,6 +306,111 @@ RELOAD=true
 VITE_API_BASE_URL=http://127.0.0.1:8000
 ```
 
+## 🌍 Gestión de Entornos (Desarrollo vs Producción)
+
+### Filosofía de Variables de Entorno
+
+En desarrollo profesional, **NUNCA se cambia el código** para alternar entre desarrollo local y producción. Se usan variables de entorno para cada ambiente.
+
+### Frontend - Archivos de Entorno
+
+El frontend usa diferentes archivos `.env` según el ambiente:
+
+| Archivo | Uso | Se sube a Git | Prioridad |
+|---------|-----|---------------|-----------|
+| `.env.local` | Desarrollo local | ❌ NO | Alta |
+| `.env.production` | Producción (Vercel) | ✅ SÍ | Media |
+| `.env.example` | Ejemplo/template | ✅ SÍ | N/A |
+
+**Cómo funciona:**
+
+1. **Desarrollo Local:**
+   ```bash
+   # frontend/.env.local
+   VITE_API_BASE_URL=http://127.0.0.1:8000
+   ```
+   Vite automáticamente carga `.env.local` cuando ejecutas `npm run dev`
+
+2. **Producción (Vercel):**
+   ```bash
+   # frontend/.env.production
+   VITE_API_BASE_URL=https://tu-backend.railway.app
+   ```
+   Vite carga `.env.production` cuando ejecutas `npm run build`
+
+3. **El código NO tiene hardcoded URLs:**
+   ```typescript
+   // frontend/src/config/api.ts
+   export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
+   ```
+   El fallback (`||`) solo se usa si no existe ninguna variable.
+
+### Backend - Variables de Entorno
+
+El backend obtiene configuración desde:
+
+1. **Desarrollo Local:** Archivo `.env` o script `start.ps1`
+   ```powershell
+   $env:DATABASE_URL="postgresql://postgres:password@localhost:5432/db"
+   $env:ALLOWED_ORIGINS="*"
+   ```
+
+2. **Producción (Railway):** Variables configuradas en el dashboard
+   - `DATABASE_URL` - Auto-configurada por Railway
+   - `ALLOWED_ORIGINS` - Configurar manualmente
+   - `PORT` - Auto-configurada por Railway
+
+### Flujo de Trabajo Profesional
+
+```
+┌─────────────────────────────────────────────────────┐
+│ 1. DESARROLLO LOCAL                                  │
+│    - Frontend: npm run dev (usa .env.local)         │
+│    - Backend: .\start.ps1 (usa variables locales)   │
+│    - Base de datos: PostgreSQL local                │
+└─────────────────────────────────────────────────────┘
+                        │
+                        ▼
+┌─────────────────────────────────────────────────────┐
+│ 2. COMMIT Y PUSH                                     │
+│    git add .                                         │
+│    git commit -m "feat: nueva funcionalidad"        │
+│    git push                                          │
+└─────────────────────────────────────────────────────┘
+                        │
+                        ▼
+┌─────────────────────────────────────────────────────┐
+│ 3. DEPLOY AUTOMÁTICO                                 │
+│    - Vercel detecta push → build con .env.production│
+│    - Railway detecta push → usa variables Railway   │
+└─────────────────────────────────────────────────────┘
+```
+
+### ⚠️ NUNCA hacer esto:
+
+```typescript
+// ❌ MAL - Cambiar código para cada ambiente
+export const API_BASE_URL = 'http://127.0.0.1:8000'; // luego cambiar a producción
+```
+
+```typescript
+// ✅ BIEN - Usar variables de entorno
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
+```
+
+### Comandos Útiles
+
+```powershell
+# Ver qué URL está usando el frontend
+npm run dev
+
+# Construir para producción localmente (prueba)
+npm run build
+
+# Ver el bundle de producción
+npm run preview
+```
+
 ## 🎯 Características Principales
 
 ### Backend
