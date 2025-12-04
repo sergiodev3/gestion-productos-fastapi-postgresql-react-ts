@@ -41,7 +41,7 @@ class ProductService {
    * Crear un nuevo producto
    */
   async create(product: ProductCreate): Promise<Product> {
-    const response = await fetch(this.baseUrl, {
+    const response = await fetch(`${this.baseUrl}/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
