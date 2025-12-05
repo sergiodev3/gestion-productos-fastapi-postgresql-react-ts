@@ -93,7 +93,7 @@ PORT=8000
 
 1. Instala PostgreSQL y crea una base de datos:
 ```sql
-CREATE DATABASE autocobro_db;
+CREATE DATABASE gestion-productos;
 ```
 
 2. Copia el contenido de `backend/database/estructura.sql` y ejecútalo en pgAdmin 4 o en tu cliente PostgreSQL preferido.
