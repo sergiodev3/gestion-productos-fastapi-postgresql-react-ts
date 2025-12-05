@@ -211,50 +211,6 @@ El frontend estará disponible en: `http://localhost:5173`
 }
 ```
 
-## 🚢 Deploy en Producción
-
-### Deploy del Backend en Railway
-
-1. Crea una cuenta en [Railway.app](https://railway.app)
-
-2. Crea un nuevo proyecto y agrega PostgreSQL
-
-3. Conecta tu repositorio de GitHub
-
-4. Configura las variables de entorno en Railway:
-   - `DATABASE_URL` - Se configura automáticamente con PostgreSQL
-   - `ALLOWED_ORIGINS` - URL de tu frontend en Vercel (ej: `https://tu-app.vercel.app`)
-   - `HOST` - `0.0.0.0`
-   - `PORT` - Se configura automáticamente
-   - `RELOAD` - `false`
-
-5. Railway detectará automáticamente el `Procfile` y desplegará la aplicación
-
-6. Copia la URL de tu backend (ej: `https://tu-backend.up.railway.app`)
-
-7. Ejecuta el script SQL en la base de datos de Railway:
-   - Ve a la pestaña "Data" de PostgreSQL en Railway
-   - Ejecuta el contenido de `backend/database/estructura.sql`
-
-### Deploy del Frontend en Vercel
-
-1. Crea una cuenta en [Vercel](https://vercel.com)
-
-2. Importa tu repositorio de GitHub
-
-3. Configura el proyecto:
-   - **Framework Preset**: Vite
-   - **Root Directory**: `frontend-update`
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-
-4. Configura las variables de entorno en Vercel:
-   - `VITE_API_BASE_URL` - URL de tu backend en Railway (ej: `https://tu-backend.up.railway.app`)
-
-5. Despliega la aplicación
-
-6. Actualiza la variable `ALLOWED_ORIGINS` en Railway con la URL de Vercel
-
 ## 🔧 Scripts Útiles
 
 ### Backend
@@ -478,4 +434,4 @@ Si tienes preguntas o sugerencias, no dudes en abrir un issue en GitHub.
 
 ---
 
-**Desarrollado con ❤️ usando FastAPI y React**
+**Desarrollado con ☕ usando FastAPI y React**
