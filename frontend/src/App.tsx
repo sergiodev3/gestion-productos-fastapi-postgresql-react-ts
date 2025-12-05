@@ -23,11 +23,6 @@ function App() {
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Cargar productos al iniciar
-  useEffect(() => {
-    loadProducts();
-  }, []);
-
   const loadProducts = async () => {
     try {
       setLoading(true);
@@ -42,6 +37,12 @@ function App() {
       setLoading(false);
     }
   };
+
+  // Cargar productos al iniciar
+  useEffect(() => {
+    loadProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleCreateProduct = async (product: ProductCreate) => {
     try {
@@ -105,8 +106,8 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>🛒 AutocobroApp</h1>
-        <p>Gestor de Productos con React + TypeScript + FastAPI</p>
+        <h1>🛒 Gestor de productos</h1>
+        <p>CRUD de Productos con React + TypeScript + FastAPI</p>
       </header>
 
       <main className="app-main">
